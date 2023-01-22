@@ -15,7 +15,11 @@ let ulist=document.querySelector('#items')
 //     item[i].style.fontWeight='bold'
 // } 
 
-let li=document.createElement('li');
-li.classList.add('list-group-item');
-li.innerText='Item 5';
-ulist.appendChild(li)
+// let li=document.createElement('li');
+// li.classList.add('list-group-item');
+// li.innerText='Item 5';
+// ulist.appendChild(li)
+
+item[1].style.backgroundColor='green';
+item[2].style.backgroundColor='white';
+item[2].style.color='white'
