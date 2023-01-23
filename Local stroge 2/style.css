@@ -58,14 +58,21 @@ hr{
     overflow-y: scroll;
 }
 
-.child{
-    position: relative;
+.parentcont{
     border: 2px solid violet;
+    position: relative;
     width: 80%;
     min-height: 2rem;
     margin-right: 20rem;
     margin-top: 5px;
     font-size: 1.2rem;
+    display: flex;
+}
 
-
+.delete{
+    width: 5rem;
+    height: 2.5rem;
+    background-color:violet;
+    color: white;
+    margin: 0.4rem;
 }
