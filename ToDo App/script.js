@@ -9,7 +9,6 @@ filterdata.addEventListener('keyup',(e)=>{
     let value=e.target.value;
     value=value.toLowerCase();
     var items = cont.querySelectorAll('.items');
-    // console.log(items)
     for(let i=0;i<items.length;i++){
         let val=items[i].textContent.toLowerCase();
         if(val.indexOf(value) != -1){
