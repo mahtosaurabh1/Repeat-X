@@ -1,0 +1,71 @@
+body{
+    background-image: url('https://img.freepik.com/free-photo/abstract-flowing-neon-wave-background_53876-101942.jpg?w=2000');
+}
+
+.label{
+    color: white;
+}
+.main-cont{
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 3%;
+    min-height: 30rem;
+}
+.cont{
+    margin-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height:40rem;
+}
+.small-section{
+    width: 90%;
+    margin: 10px;
+}
+
+.itag{
+    width: 75%;
+    height: 1.6rem;
+    font-size: 1.2rem;
+}
+
+.itag:hover{
+    border: 1px solid violet;
+    background-color: wheat;
+}
+
+.btn{
+    position: relative;
+    width: 75%;
+    margin-right: 3rem;
+    height: 2rem;
+    cursor: pointer;
+    background-color: yellowgreen;
+    color: white;
+}
+.btn:hover{
+    background-color: violet;
+}
+hr{
+    width: 90%;
+    margin-right: 5rem;
+    margin-top: 5px;
+}
+.container{
+    position: relative;
+    color: white;
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+}
+
+.child{
+    position: relative;
+    border: 2px solid violet;
+    width: 80%;
+    min-height: 2rem;
+    margin-right: 20rem;
+    margin-top: 5px;
+    font-size: 1.2rem;
+
+
+}
