@@ -10,7 +10,7 @@ let db=ls?JSON.parse(ls):[];
 
 if(db){
     db.map((val)=>{
-    createTicket(val.n,val.e)
+    createTicket(val.n,val.e,val.mn)
       })
 }
 
