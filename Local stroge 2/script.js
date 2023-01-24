@@ -45,6 +45,10 @@ function createTicket(n,e,mn,ticketId){
 
     
     container.appendChild(divtag);
+    Uname.value='';
+    email.value='';
+    mbno.value='';
+    localStorage.setItem('tickets',JSON.stringify(db));
 
     // update from ui
     let update=divtag.querySelector('.update i');
@@ -86,10 +90,6 @@ function createTicket(n,e,mn,ticketId){
         divtag.remove();
     })
 
-    Uname.value='';
-    email.value='';
-    mbno.value='';
-    localStorage.setItem('tickets',JSON.stringify(db));
 
 }
 
