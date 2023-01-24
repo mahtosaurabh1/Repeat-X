@@ -9,14 +9,9 @@ body{
     width: 50%;
     margin-left: 25%;
     margin-top: 3%;
-    min-height: 30rem;
 }
 .cont{
     margin-left: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height:40rem;
 }
 .small-section{
     width: 90%;
@@ -54,19 +49,24 @@ hr{
 .container{
     position: relative;
     color: white;
-    scroll-behavior: smooth;
-    overflow-y: scroll;
+    display: flex;
+    /* border: 2px solid red; */
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 1.2rem;
 }
+
 
 .parentcont{
     border: 2px solid violet;
     position: relative;
-    width: 80%;
-    min-height: 2rem;
-    margin-right: 20rem;
-    margin-top: 5px;
+    width: 18rem;
+    min-height: 12rem;
+    margin-top: 2px;
     font-size: 1.2rem;
     display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .delete{
@@ -75,4 +75,15 @@ hr{
     background-color:violet;
     color: white;
     margin: 0.4rem;
+}
+.update{
+    width: 5rem;
+    height: 4rem;
+    color: violet;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.child{
+ 
 }

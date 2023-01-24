@@ -37,12 +37,50 @@ function createTicket(n,e,mn,ticketId){
     // console.log(uid)
     let divtag=document.createElement('div');
     divtag.classList.add('parentcont');
-    divtag.innerHTML=`<div class="child">Name ->${n} : Email -> ${e} : Mb No.  ${mn}</div>
-                      <button class='delete' onclick='handleRemove(${ticketId})'>Delete</button>`
+    divtag.innerHTML=`<div class="child cName">${n}</div>
+                        <div class="child cEmail ">${e} </div>
+                        <div class="child cPhno" > ${mn}</div>
+                         <button class='delete' onclick='handleRemove(${ticketId})'>Delete</button>
+                         <div class='update'  ><i class="fa fa-lock"></i></div>`
 
     
     container.appendChild(divtag);
 
+    // update from ui
+    let update=divtag.querySelector('.update i');
+    let cName=divtag.querySelector('.cName');
+    let cEmail=divtag.querySelector('.cEmail');
+    let cPhno=divtag.querySelector('.cPhno');
+    update.addEventListener('click',()=>{
+        if(update.classList.contains('fa-lock')){
+            update.classList.remove('fa-lock');
+            update.classList.add('fa-unlock');
+            cName.setAttribute('contenteditable','true');
+            cEmail.setAttribute('contenteditable','true');
+            cPhno.setAttribute('contenteditable','true');
+        }else{
+            update.classList.remove('fa-unlock');
+            update.classList.add('fa-lock');
+            cName.setAttribute('contenteditable','false');
+            cEmail.setAttribute('contenteditable','false');
+            cPhno.setAttribute('contenteditable','false');
+        }
+
+        let idx=-1;
+        for(let i=0;i<db.length;i++){
+          if(db[i].uid === ticketId){
+              idx=i;
+              break;
+          }
+         }
+         db[idx].n=cName.textContent;
+         db[idx].e=cEmail.textContent;
+         db[idx].mn=cPhno.textContent;
+         console.log(db[idx].n);
+         localStorage.setItem('tickets',JSON.stringify(db));
+    })
+
+    // delete from ui
     let del=divtag.querySelector('.delete');
     del.addEventListener('click',()=>{
         divtag.remove();
@@ -66,4 +104,5 @@ function handleRemove(uniqueId){
        db.splice(idx,1);
        localStorage.setItem('tickets',JSON.stringify(db));
 }
+
 
