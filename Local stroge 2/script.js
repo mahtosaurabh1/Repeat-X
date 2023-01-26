@@ -90,6 +90,8 @@ function createTicket(n,e,mn,ticketId){
         divtag.remove();
     })
 
+   
+
 
 }
 
