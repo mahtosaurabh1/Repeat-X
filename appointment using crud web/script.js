@@ -6,16 +6,14 @@ let mbno=document.querySelector('.mbno');
 
 
 
-let ls=localStorage.getItem('tickets');
-let db=ls?JSON.parse(ls):[];
-
-
-if(db){
-    db.map((val)=>{
-    createTicket(val.n,val.e,val.mn,val.uid)
-      })
+async function  fetchOldData(){
+    let d= await axios.get('https://crudcrud.com/api/c48ffc4d81ac4d6bb60749a9b90a986b/appointment');
+     d.data.map((val)=>{
+        // console.log(val._id);
+        createTicket(val.n,val.e,val.mn,val._id);
+     })
 }
-
+fetchOldData();
 
 btn.addEventListener('click',()=>{
     let n=Uname.value;
@@ -26,21 +24,26 @@ btn.addEventListener('click',()=>{
    if(n === '' || e === '' || mn==''){
     alert('please enter name and email and mobile number')
    }else{
-        let uid=Math.random();
-        db.push({n,e,mn,uid});
-        createTicket(n,e,mn,uid);
-        // console.log(uid)
+       let obj={n,e,mn};
+        axios.post('https://crudcrud.com/api/c48ffc4d81ac4d6bb60749a9b90a986b/appointment',obj)
+        .then((resolve)=>{
+            createTicket(resolve.data.n,resolve.data.e,resolve.data.mn)
+            console.log(resolve.data)
+        })
+        .catch((error)=>{
+            console.log(error)
+        })
    }
 })
 
-function createTicket(n,e,mn,ticketId){
+async function createTicket(n,e,mn,id){
     // console.log(uid)
     let divtag=document.createElement('div');
     divtag.classList.add('parentcont');
     divtag.innerHTML=`<div class="child cName">${n}</div>
                         <div class="child cEmail ">${e} </div>
                         <div class="child cPhno" > ${mn}</div>
-                         <button class='delete' onclick='handleRemove(${ticketId})'>Delete</button>
+                         <button class='delete' onclick='handleRemove(${id})'>Delete</button>
                          <div class='update'  ><i class="fa fa-lock"></i></div>`
 
     
@@ -48,7 +51,6 @@ function createTicket(n,e,mn,ticketId){
     Uname.value='';
     email.value='';
     mbno.value='';
-    localStorage.setItem('tickets',JSON.stringify(db));
 
     // update from ui
     let update=divtag.querySelector('.update i');
@@ -68,20 +70,9 @@ function createTicket(n,e,mn,ticketId){
             cName.setAttribute('contenteditable','false');
             cEmail.setAttribute('contenteditable','false');
             cPhno.setAttribute('contenteditable','false');
+            let updObj={"n":cName.textContent,"e":cEmail.textContent,"pn":cPhno.textContent}
+            axios.put(`https://crudcrud.com/api/c48ffc4d81ac4d6bb60749a9b90a986b/appointment/${id}`,updObj)
         }
-
-        let idx=-1;
-        for(let i=0;i<db.length;i++){
-          if(db[i].uid === ticketId){
-              idx=i;
-              break;
-          }
-         }
-         db[idx].n=cName.textContent;
-         db[idx].e=cEmail.textContent;
-         db[idx].mn=cPhno.textContent;
-         console.log(db[idx].n);
-         localStorage.setItem('tickets',JSON.stringify(db));
     })
 
     // delete from ui
@@ -90,21 +81,11 @@ function createTicket(n,e,mn,ticketId){
         divtag.remove();
     })
 
-   
-
-
 }
 
-function handleRemove(uniqueId){
-      let idx=-1;
-      for(let i=0;i<db.length;i++){
-        if(db[i].uid === uniqueId){
-            idx=i;
-            break;
-        }
-       }
-       db.splice(idx,1);
-       localStorage.setItem('tickets',JSON.stringify(db));
+async function handleRemove(id){
+    let a=await  axios.delete(`https://crudcrud.com/api/c48ffc4d81ac4d6bb60749a9b90a986b/appointment/${id}`)
+    console.log(a)
 }
 
 
