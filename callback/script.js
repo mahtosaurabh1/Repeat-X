@@ -34,7 +34,8 @@ function createPost(post){
 }
 
 
-createPost({title:'post 3',body:'this is post 1',createdat:current.getTime()/1000,presentTime:''}).then(getPosts)
+createPost({title:'post 3',body:'this is post 3',createdat:current.getTime()/1000,presentTime:''}).then(getPosts)
+createPost({title:'post 4',body:'this is post 4',createdat:current.getTime()/1000,presentTime:''}).then(getPosts)
 
 function removePost(){
     return new Promise((resolve,reject)=>{
@@ -59,7 +60,7 @@ let a=setInterval(()=>{
 
 setTimeout(()=>{
     clearInterval(a);
-},6000)
+},8000)
 
 
 
