@@ -79,7 +79,7 @@ function createTicket(n,e,mn,userId){
             cEmail.setAttribute('contenteditable','false');
             cPhno.setAttribute('contenteditable','false');
 
-            let updObj={"n":cName.textContent,"e":cEmail.textContent,"pn":cPhno.textContent}
+            let updObj={"n":cName.textContent,"e":cEmail.textContent,"mn":cPhno.textContent}
             axios.put(`https://crudcrud.com/api/ba044c505c4841d5ba17458008c5ca10/appointment/${userId}`,updObj)
         }
     })
@@ -96,8 +96,6 @@ function createTicket(n,e,mn,userId){
             console.log(er);
         })
     })
-   
-
 }
 
 
