@@ -1,7 +1,16 @@
-const arr1 = [1, 2, 3]
+var a = 3;
 
-const arr2 = [3,5,6]
 
-const arr3 = [...arr1, ...arr2]
 
-console.log(arr3)
+function printName(name){
+
+console.log(name)
+
+}
+
+
+
+printName("YAVTECH");
+
+console.log(a)
+

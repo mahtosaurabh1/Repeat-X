@@ -15,7 +15,6 @@ if(db){
     createTicket(val.A,val.descV,val.uid);
     totalA += parseInt(val.A);
       })
-      console.log("previous",totalA);
       showAmount(totalA);
 }
 

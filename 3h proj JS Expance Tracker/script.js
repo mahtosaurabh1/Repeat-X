@@ -5,9 +5,6 @@ let btn=document.querySelector('.btn')
 let sel=document.querySelector('#selc');
 
 
-
-
-
 let ls=localStorage.getItem('tickets');
 let db=ls?JSON.parse(ls):[];
 
