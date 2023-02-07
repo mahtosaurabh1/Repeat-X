@@ -8,31 +8,44 @@ let mcont=document.querySelector('.main-cont');
 let totalA=0;
 
 async function  fetchOldData(){
-    let d= await axios.get('https://crudcrud.com/api/6e70154eaf544e63b6d5a6140b73b1a3/addtocart');
+    try{
+        let d= await axios.get('https://crudcrud.com/api/aa72ede5a77948fdb96847f86af41ef2/addtocart');
      d.data.map((val)=>{
         // console.log(val._id);
         createTicket(val.A,val.descV,val._id);
         totalA += parseInt(val.A);
      })
      showAmount(totalA);
+    }catch(err){
+        console.log(err)
+    }
 }
 fetchOldData();
 
 
 function showAmount(amt){
+   try{
     let showA=document.createElement('h1');
     showA.classList.add('showA');
     showA.textContent=`Total Amount -> ${amt}`;
     mcont.appendChild(showA)
+   }catch(err){
+    console.log(err);
+   }
 }
 
 function removeAmount(){
-    let showA=mcont.querySelector('.showA');
+    try{
+        let showA=mcont.querySelector('.showA');
     showA.remove();
+    }catch(err){
+        console.log(err);
+    }
 }
 
 
 btn.addEventListener('click',()=>{
+   try{
     let A=Aname.value;
     let descV=desc.value;
     descV.trim();
@@ -43,7 +56,7 @@ btn.addEventListener('click',()=>{
     removeAmount();
     showAmount(totalA)
     let obj={A,descV};
-    axios.post('https://crudcrud.com/api/6e70154eaf544e63b6d5a6140b73b1a3/addtocart',obj)
+    axios.post('https://crudcrud.com/api/aa72ede5a77948fdb96847f86af41ef2/addtocart',obj)
     .then((resolve)=>{
         createTicket(resolve.data.A,resolve.data.descV,resolve.data._id);
     })
@@ -52,10 +65,14 @@ btn.addEventListener('click',()=>{
     })
 
    }
+   }catch(err){
+    console.log(err)
+   }
 })
 
 function createTicket(A,descV,ticketId){
     // console.log(uid)
+  try{
     let divtag=document.createElement('div');
     divtag.classList.add('parentcont');
     divtag.innerHTML=`
@@ -78,11 +95,11 @@ function createTicket(A,descV,ticketId){
     let del=divtag.querySelector('.delete');
     del.addEventListener('click',async ()=>{
 
-        await axios.delete(`https://crudcrud.com/api/6e70154eaf544e63b6d5a6140b73b1a3/addtocart/${ticketId}`)
+        await axios.delete(`https://crudcrud.com/api/aa72ede5a77948fdb96847f86af41ef2/addtocart/${ticketId}`)
         .then(async (resolve)=>{
              // delete amount
         totalA = 0;
-        let d= await axios.get('https://crudcrud.com/api/6e70154eaf544e63b6d5a6140b73b1a3/addtocart');
+        let d= await axios.get('https://crudcrud.com/api/aa72ede5a77948fdb96847f86af41ef2/addtocart');
         d.data.map((val)=>{
            totalA += parseInt(val.A);
         })
@@ -95,7 +112,8 @@ function createTicket(A,descV,ticketId){
             console.log(er);
         })
 
-       
-
     })
+  }catch(err){
+    console.log(err)
+  }
 }
