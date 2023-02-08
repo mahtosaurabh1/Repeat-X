@@ -94,3 +94,7 @@ hr{
   display: flex;
   flex-wrap: wrap;
 }
+
+.showA{
+    color:white
+}

@@ -1,6 +1,7 @@
 let Aname=document.querySelector('.Aname')
 let desc=document.querySelector('.desc')
-let container=document.querySelector('.container')
+let container=document.querySelector('.container');
+let mainCont=document.querySelector('.main-cont')
 let btn=document.querySelector('.btn')
 let sel=document.querySelector('#selc');
 
@@ -8,11 +9,27 @@ let sel=document.querySelector('#selc');
 let ls=localStorage.getItem('tickets');
 let db=ls?JSON.parse(ls):[];
 
+let totalA=0;
 
 if(db){
     db.map((val)=>{
-    createTicket(val.A,val.descV,val.selv,val.uid)
+    createTicket(val.A,val.descV,val.selv,val.uid);
+    totalA += parseInt(val.A);
       })
+      showAmount(totalA);
+}
+
+function showAmount(amt){
+    let showA=document.createElement('h1');
+    showA.classList.add('showA');
+    showA.textContent=`Total Amount -> ${amt}`;
+     mainCont.appendChild(showA)
+}
+
+function removeAmount(){
+    let showA=mainCont.querySelector('.showA');
+    showA.remove();
+
 }
 
 
@@ -26,9 +43,13 @@ btn.addEventListener('click',()=>{
    if(A === '' || descV === '' || selv==''){
     alert('please enter Amount and Description and mobile number')
    }else{
+        totalA += parseInt(A);
         let uid=Math.random();
         db.push({A,descV,selv,uid});
         createTicket(A,descV,selv,uid);
+
+        removeAmount();
+        showAmount(totalA);
         // console.log(uid)
    }
 })
@@ -122,6 +143,15 @@ function handleRemove(uniqueId){
        }
        db.splice(idx,1);
        localStorage.setItem('tickets',JSON.stringify(db));
+
+       let totalA=0;
+
+       db.map((val)=>{
+            totalA += parseInt(val.A);
+       })
+       removeAmount();
+       showAmount(totalA);
+
 }
 
 
