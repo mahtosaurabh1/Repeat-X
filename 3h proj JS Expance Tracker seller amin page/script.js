@@ -115,11 +115,18 @@ function createTicket(A,descV,selv,ticketId){
               break;
           }
          }
-         db[idx].n=cExA.textContent;
-         db[idx].e=cDesc.textContent;
+         db[idx].A=cExA.textContent;
+         db[idx].descV=cDesc.textContent;
          db[idx].selv=cSelcV.textContent;
         //  console.log(db[idx].n);
          localStorage.setItem('tickets',JSON.stringify(db));
+  
+            let totalA=0;
+            db.map((val)=>{
+                    totalA += parseInt(val.A);
+            })
+            removeAmount();
+            showAmount(totalA);
     })
 
     // delete from ui
@@ -127,8 +134,6 @@ function createTicket(A,descV,selv,ticketId){
     del.addEventListener('click',()=>{
         divtag.remove();
     })
-
-   
 
 
 }
