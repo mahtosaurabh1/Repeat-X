@@ -1,8 +1,16 @@
-let http=require('http');
+let http = require("http");
 
-const server=http.createServer((req,res)=>{
-    console.log(req)
-    console.log('Saurabh Kumar');
+const app = http.createServer(function(req,res){
+    // res.write("Hello world");
+    let url=req.url;
+    if(url === '/home'){
+        res.write("welcome to home")
+    }else if(url==='/about'){
+        res.write('welcome to about us page')
+    }else if(url === '/node'){
+        res.write('welcome to our nodejs project')
+    }
+    res.end();
 })
 
-server.listen(3001)
+app.listen(5000);
