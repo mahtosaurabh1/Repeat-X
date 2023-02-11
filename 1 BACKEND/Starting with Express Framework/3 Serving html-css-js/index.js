@@ -3,12 +3,14 @@ let path=require('path')
 let bodyParser=require('body-parser');
 const app=express();
 let adminRoutes=require('./routes/admin')
-let shopRoutes=require('./routes/shop')
+let shopRoutes=require('./routes/shop');
+let contactRoutes=require('./routes/contactus')
 
 app.use(bodyParser.urlencoded({extended:false}))
 
 app.use(shopRoutes);
 app.use(adminRoutes);
+app.use(contactRoutes)
 
 app.use((req,res)=>{
     res.status(404).sendFile(path.join(__dirname,'views','PageNF.html'))
