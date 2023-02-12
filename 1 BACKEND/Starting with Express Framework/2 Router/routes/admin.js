@@ -13,6 +13,4 @@ router.use('/product',(req,res,next)=>{
 })
 
 
-
-
 module.exports=router;

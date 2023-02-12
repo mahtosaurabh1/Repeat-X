@@ -29,6 +29,20 @@ let addTransactionController=async (req,res)=>{
     }
 }
 
+let updateTransactionControler=async (req,res)=>{
+    try {
+        let result= await transactionSchema.updateOne(
+            {_id:req.params.id},
+            {
+              $set:req.body
+            }
+        )
+        res.send(result)
+    } catch (error) {
+        res.send(error)
+    }
+}
+
 let deleteTransactionController=async (req,res)=>{
     try{
         let transaction=await transactionSchema.findById(req.params.id);
@@ -56,5 +70,6 @@ let deleteTransactionController=async (req,res)=>{
 module.exports={
     getTransactionController,
     addTransactionController,
-    deleteTransactionController
+    deleteTransactionController,
+    updateTransactionControler
 }
