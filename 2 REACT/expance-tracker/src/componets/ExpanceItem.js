@@ -1,15 +1,19 @@
 import React from 'react'
-
+import './expanceitem.css'
 function ExpanceItem() {
+    const date=new Date(2023,1,1);
+    let item='Food';
+    let price=500;
+    let location='delhi'
   return (
-    <>
-    <h1>Expance Item</h1>
-    <div>
-       <div> Food Rs 10</div>
-       <div> Petrol Rs 100</div>
-       <div> Movies Rs 200</div>
+    <div className='expense-item'>
+    <h1>{date.toISOString()}</h1>
+    <div className='expense-item__description'>
+       <h2>{item}</h2>
+       <h2>{location}</h2>
+       <div className='expense-item__price'>{price}</div>
     </div>
-    </>
+    </div>
   )
 }
 
