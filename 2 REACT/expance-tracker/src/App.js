@@ -8,19 +8,19 @@ function App() {
     title:"movie",
     location:"delhi",
     price:200,
-    date:new Date(2023,1,1)
+    date:new Date("2023-03-25")
   },{
     id:2,
     title:"play",
     location:"delhi",
     price:200,
-    date:new Date(2023,1,1)
+    date:new Date("2022-03-25")
   },{
     id:3,
     title:"book",
     location:"delhi",
     price:200,
-    date:new Date(2023,1,1)
+    date:new Date("2024-03-25")
   },]
   return (
     <>
