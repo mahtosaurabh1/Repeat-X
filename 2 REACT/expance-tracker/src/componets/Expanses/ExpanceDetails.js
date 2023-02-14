@@ -1,6 +1,6 @@
 import React from 'react'
 
-function ExpanceDetails(props) {
+let ExpanceDetails=(props)=>{
   return (
     <>
             <div className='expense-item__description'>

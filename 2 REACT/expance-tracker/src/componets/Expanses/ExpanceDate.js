@@ -1,7 +1,6 @@
 import React from "react";
 
-function ExpanceDate(props) {
-    console.log("date is",props.props.date);
+let ExpanceDate=(props) =>{
   return (
     <>
       <div className="expense-date">
