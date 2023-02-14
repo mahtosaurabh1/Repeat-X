@@ -1,4 +1,5 @@
 import React from 'react'
+import Card from './Card';
 import ExpanceDate from './ExpanceDate';
 import ExpanceDetails from './ExpanceDetails';
 import './expanceitem.css'
@@ -8,7 +9,9 @@ function ExpanceItem({props}) {
     {
         props.map((val)=>{
             return (
+                // <Card className='expense-item' key={val.id}>
                 <div className='expense-item' key={val.id}>
+                    <Card />
                 {/* <h1>{val.date.toISOString()}</h1> */}
                 <ExpanceDate props={val}/>
                 {/* <div className='expense-item__description'>
@@ -18,6 +21,7 @@ function ExpanceItem({props}) {
                 </div> */}
                 <ExpanceDetails props={val}/>
                 </div>
+                // </Card>
             )
         })
     }
