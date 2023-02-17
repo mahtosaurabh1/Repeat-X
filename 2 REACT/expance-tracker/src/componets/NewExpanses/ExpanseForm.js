@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import './ExapnseForm.css'
 function ExpanseForm() {
-    // const [title,setTitle]=useState();
-    // const [amount,setAmount]=useState();
-    // const [date,setDate]=useState();
+    const [enteredTitle,setTitle]=useState();
+    const [entredAmount,setAmount]=useState();
+    const [entredDate,setDate]=useState();
 
-    const [userInput,setUserInput]=useState({
-       title:'',
-       amount:'',
-       date:'' 
-    })
+    // const [userInput,setUserInput]=useState({
+    //    title:'',
+    //    amount:'',
+    //    date:'' 
+    // })
 
     let handleTitleInput = (e)=>{
         // setUserInput({
@@ -17,28 +17,45 @@ function ExpanseForm() {
         //     title:e.target.value
         // })
 
-        setUserInput((prevValue)=>{
-            return {
-                ...prevValue,title:e.target.value
-            }
-        })
+        // setUserInput((prevValue)=>{
+        //     return {
+        //         ...prevValue,title:e.target.value
+        //     }
+        // })
+
+        setTitle(e.target.value);
+
+        
     }
 
     let handleAmountInput=(e)=>{
-        setUserInput({
-            ...userInput,
-            amount:e.target.value
-        })
+        // setUserInput({
+        //     ...userInput,
+        //     amount:e.target.value
+        // })
+
+        setAmount(e.target.value);
     }
 
     let handleDateInput=(e)=>{
-        setUserInput({
-            ...userInput,
-            date:e.target.value
-        })
+        // setUserInput({
+        //     ...userInput,
+        //     date:e.target.value
+        // })
+        setDate(e.target.value);
+    }
+
+    const formSubmitHandler=(e)=>{
+        e.preventDefault();
+        const expanseData={
+            title:enteredTitle,
+            amount:entredAmount,
+            date:new Date(entredDate)
+        }
+        console.warn(expanseData)
     }
   return (
-    <form action="">
+    <form action="" onSubmit={formSubmitHandler}>
         <div className="new-expense__control">
             <div className='new-expense__control'>
                 <label >Title</label>
