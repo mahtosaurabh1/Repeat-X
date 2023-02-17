@@ -1,19 +1,41 @@
 import React, { useState } from 'react'
 import './ExapnseForm.css'
 function ExpanseForm() {
-    const [title,setTitle]=useState();
-    const [amount,setAmount]=useState();
-    const [date,setDate]=useState();
+    // const [title,setTitle]=useState();
+    // const [amount,setAmount]=useState();
+    // const [date,setDate]=useState();
+
+    const [userInput,setUserInput]=useState({
+       title:'',
+       amount:'',
+       date:'' 
+    })
+
     let handleTitleInput = (e)=>{
-        setTitle(e.target.value);
+        // setUserInput({
+        //     ...userInput,
+        //     title:e.target.value
+        // })
+
+        setUserInput((prevValue)=>{
+            return {
+                ...prevValue,title:e.target.value
+            }
+        })
     }
 
     let handleAmountInput=(e)=>{
-        setAmount(e.target.value);
+        setUserInput({
+            ...userInput,
+            amount:e.target.value
+        })
     }
 
     let handleDateInput=(e)=>{
-        setDate(e.target.value);
+        setUserInput({
+            ...userInput,
+            date:e.target.value
+        })
     }
   return (
     <form action="">
