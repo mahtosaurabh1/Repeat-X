@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './ExapnseForm.css'
-function ExpanseForm() {
+function ExpanseForm(props) {
     const [enteredTitle,setTitle]=useState();
     const [entredAmount,setAmount]=useState();
     const [entredDate,setDate]=useState();
@@ -52,22 +52,26 @@ function ExpanseForm() {
             amount:entredAmount,
             date:new Date(entredDate)
         }
-        console.warn(expanseData)
+        props.onSaveExpanseData(expanseData);
+        setTitle('');
+        setAmount('');
+        setDate('')
+        // console.warn(expanseData)
     }
   return (
     <form action="" onSubmit={formSubmitHandler}>
         <div className="new-expense__control">
             <div className='new-expense__control'>
                 <label >Title</label>
-                <input type="text" onChange={handleTitleInput} />
+                <input type="text" value={enteredTitle} onChange={handleTitleInput} />
             </div>
             <div className='new-expense__control'>
                 <label >Amount</label>
-                <input type="number" onChange={handleAmountInput} />
+                <input type="number" value={entredAmount} onChange={handleAmountInput} />
             </div>
             <div className='new-expense__control'>
                 <label >Date</label>
-                <input type="date" onChange={handleDateInput} />
+                <input type="date"  value={entredDate} onChange={handleDateInput} />
             </div>
         </div>
         <div className='new-expense__actions'>
