@@ -1,5 +1,6 @@
 import './App.css';
 import ExpanceItem from './componets/Expanses/ExpanceItem';
+import NewEpanses from './componets/NewExpanses/newEpanses';
 
 let  App=()=> {
   const expances=[{
@@ -22,9 +23,10 @@ let  App=()=> {
     date:new Date("2024-03-25")
   },]
   return (
-    <>
+    <div>
+    <NewEpanses/>
     <ExpanceItem props={expances}/>
-    </>
+    </div>
   );
 }
 
