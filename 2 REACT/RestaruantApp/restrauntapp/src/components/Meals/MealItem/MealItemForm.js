@@ -5,7 +5,7 @@ function MealItemForm(props) {
   const [amountIsVAlid,setamountIsVAlid]=useState(true);
 
   let amountInputRef=useRef();
-  console.log("sdsd",amountInputRef);
+
   let submitHandler=(e)=>{
     e.preventDefault();
     const entredAmount=amountInputRef.current.value;
@@ -17,6 +17,9 @@ function MealItemForm(props) {
     }
     props.onAddToCart(entredAmountNumber)
   }
+
+
+ 
 
   return (
     <form  className={classes.form} onSubmit={submitHandler} >
