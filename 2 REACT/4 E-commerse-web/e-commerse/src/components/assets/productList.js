@@ -1,5 +1,6 @@
 const ProductsArr = [
   {
+    id:1,
     title: "Colors",
 
     price: 100,
@@ -8,6 +9,7 @@ const ProductsArr = [
   },
 
   {
+    id:2,
     title: "Black and white Colors",
 
     price: 50,
@@ -16,6 +18,7 @@ const ProductsArr = [
   },
 
   {
+    id:3,
     title: "Yellow and Black Colors",
 
     price: 70,
@@ -24,6 +27,7 @@ const ProductsArr = [
   },
 
   {
+    id:4,
     title: "Blue Color",
 
     price: 100,

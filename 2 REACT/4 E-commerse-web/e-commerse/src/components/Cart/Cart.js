@@ -1,12 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { CartContext } from '../../store/context';
 import ProductsArr from '../assets/productList'
+import Header from '../Header/Header';
 import './cart.css'
 function Cart() {
   let products=ProductsArr;
+  let cartCtx=React.useContext(CartContext);
+  console.log("edesf",cartCtx);
+  let [showCart,setShowCart]=useState(cartCtx.showCart);
+
+  let handleRemoveCart=()=>{
+    setShowCart(!showCart);
+  }
 
 
   return (
     <div className="cart-container">
+      <button onClick={handleRemoveCart}>X</button>
       <table>
         <thead>
         <tr>

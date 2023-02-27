@@ -1,9 +1,10 @@
 import React from "react";
+import { CartContext } from "../../store/context";
 import ProductsArr from "../assets/productList";
 import "./products.css";
 function Products() {
   let productArr = ProductsArr;
-  console.log(productArr);
+
   return (
     <div className="product-container">
       {productArr.map((val, i) => {
@@ -16,7 +17,7 @@ function Products() {
             />
             <div className="btn-price-container">
               <div className="price">{val.price}</div>
-              <button>Add to Cart</button>
+              <button >Add to Cart</button>
             </div>
           </div>
         );

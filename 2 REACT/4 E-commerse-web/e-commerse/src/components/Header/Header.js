@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { CartContext } from '../../store/context';
 import Cart from '../Cart/Cart';
 import './header.css'
 function Header() {
 
-  let cartContext=React.useContext(CartContext);
-  console.log(cartContext);
-  const [cartShow,setCartShow]=useState(cartContext);
+  let cartContext=useContext(CartContext);
+  console.log("dcsc",cartContext.showCart);
+
+  const [cartShow,setCartShow]=useState(cartContext.showCart);
+
+
   return (
    <div className="header-container">
     <div className="menu">

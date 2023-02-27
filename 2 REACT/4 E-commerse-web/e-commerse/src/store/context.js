@@ -1,14 +1,18 @@
+import React, { createContext } from "react"
+import ProductsArr from "../components/assets/productList";
 
-import React, { useEffect, useState } from "react"
+let CartProduct=ProductsArr;
+export const CartContext =createContext();
 
-export const CartContext = React.createContext();
 
 export function CartContextProvider({children}){
-    let [showCart,setShowCart] = useState(false);
-   
-    let showValue = showCart;
+    let value ={
+        showCart:false,
+        products:CartProduct,
+        totalAmount:0
+    };
     return (
-        <CartContext.Provider value={showValue}>
+        <CartContext.Provider value={value}>
             {children}
         </CartContext.Provider>
     )
