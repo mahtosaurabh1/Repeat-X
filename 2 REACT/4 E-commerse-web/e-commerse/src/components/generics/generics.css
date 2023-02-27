@@ -1,0 +1,11 @@
+.generics-container{
+    display:flex ;
+    margin-top: 0.2rem;
+    background-color: grey;
+    height: 6rem;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2rem;
+}

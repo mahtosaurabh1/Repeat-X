@@ -1,0 +1,10 @@
+.about-container{
+    display: flex;
+    justify-content: space-around;
+    gap: 4rem;
+}
+.about-container img{
+    height: 10rem;
+    width: 10rem;
+    border-radius: 50%;
+}

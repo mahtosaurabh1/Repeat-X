@@ -1,0 +1,26 @@
+.header-container{
+    background-color:black;
+    color: white;
+    display: flex;
+    justify-content: space-evenly;
+    min-height: 4rem;
+    align-items: center;
+}
+.menu{
+    display: flex;
+    gap: 2.5rem;
+    font-size: 1.2rem;
+}
+.btn button{
+    border: 2px solid #56CCF2;
+    height: 2rem;
+    width: 5rem;
+    border-radius: 0.3rem;
+    font-size: 1.2rem;
+    color: white;
+    background-color:black;
+}
+.Link{
+    color: white;
+    text-decoration: none;
+}

@@ -1,0 +1,11 @@
+.footer-container{
+    height: 4rem;
+    width: 100%;
+    background-color: aqua;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 8rem;
+}
