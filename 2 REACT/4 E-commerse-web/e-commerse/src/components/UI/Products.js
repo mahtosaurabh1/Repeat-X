@@ -8,7 +8,7 @@ function Products() {
     <div className="product-container">
       {productArr.map((val, i) => {
         return (
-          <div className="card">
+          <div className="card" key={i}>
             <div className="title">{val.title}</div>
             <img
               src={val.imageUrl}

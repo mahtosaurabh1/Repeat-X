@@ -1,25 +1,36 @@
 .header-container{
     background-color:black;
-    color: white;
     display: flex;
-    justify-content: space-evenly;
-    min-height: 4rem;
+    color: white;
+    height: 4rem;
     align-items: center;
+}
+.cartContainerShown{
+    position: relative;
+    top: 16rem;
+    left:40rem;
 }
 .menu{
     display: flex;
     gap: 2.5rem;
     font-size: 1.2rem;
 }
+.btn{
+    position: relative;
+    left: 70rem;
+}
+
+
 .btn button{
     border: 2px solid #56CCF2;
     height: 2rem;
     width: 5rem;
     border-radius: 0.3rem;
-    font-size: 1.2rem;
+    font-size: 0.6rem;
     color: white;
     background-color:black;
 }
+
 .Link{
     color: white;
     text-decoration: none;
