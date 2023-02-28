@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState } from 'react';
-
 import MoviesList from './components/MoviesList';
 import './App.css';
 import AddMovie from './components/AddMovie/AddMovie';
@@ -8,20 +7,38 @@ function App() {
   const [movies, setMovies] = useState([]);
   const [isLoading,setIsLoading]=useState(false);
 
+
+  let addMovieHandler=(async (movie)=>{
+    const response = await fetch('https://practice-9d840-default-rtdb.firebaseio.com/movies.json', {
+      method: 'POST',
+      body: JSON.stringify(movie),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const data = await response.json();
+    console.log(data);
+    fetchMoviesHandler();
+  })
+
+
   const  fetchMoviesHandler = useCallback(async ()=>{
     setIsLoading(true)
     try {
-      let responce=await fetch('https://swapi.dev/api/films/');
+      let responce=await fetch('https://practice-9d840-default-rtdb.firebaseio.com/movies.json');
       let  data=await responce.json();
-      const transformedMovies = data.results.map((movieData) => {
-        return {
-          id: movieData.episode_id,
-          title: movieData.title,
-          openingText: movieData.opening_crawl,
-          releaseDate: movieData.release_date,
-        };
-      });
-      setMovies(transformedMovies);
+      console.log(data);
+      let loadMovie=[];
+      for(let key in data){
+          loadMovie.push({
+            id:key,
+            title:data[key].title,
+            openingText:data[key].openingText,
+            releaseDate:data[key].RelDate
+          });
+      }
+      // console.log("loadmov",loadMovie);
+      setMovies(loadMovie);
     } catch (error) {
       console.log(error);
     }
@@ -31,10 +48,13 @@ function App() {
   useEffect(()=>{
     fetchMoviesHandler();
   },[fetchMoviesHandler])
+
+
+
   return (
     <React.Fragment>
       <section>
-        <AddMovie/>
+        <AddMovie onAddMovie={addMovieHandler}/>
       </section>
       <section>
         <button onClick={fetchMoviesHandler}>Fetch Movies</button>

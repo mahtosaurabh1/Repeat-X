@@ -9,9 +9,18 @@ function AddMovie(props) {
  
  let submitHandler=(e)=>{
   e.preventDefault();
-  console.log(title,openingText,RelDate);
+  let obj={
+    title,
+    openingText,
+    RelDate
+   }
+  
+   props.onAddMovie(obj);
+  // console.log(title,openingText,RelDate);
 
  }
+
+
   return (
     <form onSubmit={submitHandler}>
       <div className={classes.control}>
