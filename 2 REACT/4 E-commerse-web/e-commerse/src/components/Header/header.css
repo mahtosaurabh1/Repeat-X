@@ -4,21 +4,15 @@
     color: white;
     height: 4rem;
     align-items: center;
+    justify-content: space-between;
 }
-.cartContainerShown{
-    position: relative;
-    top: 16rem;
-    left:40rem;
-}
+
 .menu{
     display: flex;
     gap: 2.5rem;
     font-size: 1.2rem;
 }
-.btn{
-    position: relative;
-    left: 70rem;
-}
+
 
 
 .btn button{

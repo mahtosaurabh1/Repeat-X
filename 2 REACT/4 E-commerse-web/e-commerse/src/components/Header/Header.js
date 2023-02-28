@@ -1,15 +1,9 @@
 import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { CartContext } from '../../store/context';
-import Cart from '../Cart/Cart';
+import { CartState } from '../../store/context';
 import './header.css'
 function Header() {
-
-  let cartContext=useContext(CartContext);
-  console.log("dcsc",cartContext.showCart);
-
-  const [cartShow,setCartShow]=useState(cartContext.showCart);
-
+    let {cart}=CartState();
 
   return (
    <div className="header-container">
@@ -19,11 +13,9 @@ function Header() {
         <Link to='/about'  className='Link'><div>About</div></Link>
     </div>
     <div className="btn">
-        <button onClick={()=>setCartShow(!cartShow)}>Cart</button>
+        <Link to='/cart'><button>Cart {cart.length}</button></Link>
     </div>
-    <div className="cartContainerShown">
-            {cartShow &&<Cart/>}
-        </div>
+
    </div>
   )
 }

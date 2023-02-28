@@ -1,7 +1,9 @@
 .cart-container{
     position: relative;
-    margin-top: 4rem;
-    background-color: white;
+    margin-top: 2.5rem;
+    display:flex ;
+    justify-content: center;
+    align-items: center;
 }
 
 

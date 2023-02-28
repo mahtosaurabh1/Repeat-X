@@ -1,23 +1,26 @@
-import React, { useState } from 'react'
-import { CartContext } from '../../store/context';
-import ProductsArr from '../assets/productList'
-import Header from '../Header/Header';
+import React, { useEffect, useState } from 'react'
+import { CartState } from '../../store/context';
 import './cart.css'
 function Cart() {
-  let products=ProductsArr;
-  let cartCtx=React.useContext(CartContext);
-  console.log("edesf",cartCtx);
-  let [showCart,setShowCart]=useState(cartCtx.showCart);
+  let [totalAmt,setTotalAmt]=useState(0);
+  let {cart,setCart}=CartState();
+  let products=cart;
+  useEffect(()=>{
+   setTotalAmt(cart.reduce((prev,cur)=>{
+    return prev + Number(cur.price);
+    },0))
+  },[cart]);
 
-  let handleRemoveCart=()=>{
-    setShowCart(!showCart);
-  }
-
-
+let handleRemoveFromCart=(id)=>{
+  let nArrProducts=products.filter((val)=>{
+    return val.id !== id;
+  })
+  setCart(nArrProducts)
+}
   return (
     <div className="cart-container">
-      <button onClick={handleRemoveCart}>X</button>
       <table>
+        <h3>Total Price ${totalAmt}</h3>
         <thead>
         <tr>
             <th><h2>Item</h2></th>
@@ -38,8 +41,8 @@ function Cart() {
               </td>
               <td>{val.price}</td>
               <td className='input-btn-container'>
-                <input type="text" value="5"/>
-                <button>Remove</button>
+                <input type="text" value="1"/>
+                <button onClick={()=>handleRemoveFromCart(val.id)}>Remove</button>
               </td>
             </tr>
              </tbody>

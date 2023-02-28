@@ -1,9 +1,19 @@
 import React from "react";
-import { CartContext } from "../../store/context";
+import { CartContext, CartState } from "../../store/context";
 import ProductsArr from "../assets/productList";
 import "./products.css";
 function Products() {
-  let productArr = ProductsArr;
+
+  let {products,setCart,cart}=CartState();
+  let productArr =products;
+
+  let handleAddtoCart=(val)=>{
+    if(cart.includes(val)){
+      alert('item already added');
+      return;
+    }
+    setCart([...cart,val]);
+  }
 
   return (
     <div className="product-container">
@@ -17,7 +27,7 @@ function Products() {
             />
             <div className="btn-price-container">
               <div className="price">{val.price}</div>
-              <button >Add to Cart</button>
+              <button onClick={()=>handleAddtoCart(val)} >Add to Cart</button>
             </div>
           </div>
         );

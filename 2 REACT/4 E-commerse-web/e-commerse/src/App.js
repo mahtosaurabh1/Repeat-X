@@ -7,6 +7,7 @@ import Footer from './components/Footer/Footer';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import About from './components/About/About';
 import Home from './components/Home/Home';
+import Cart from './components/Cart/Cart';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         <Route path='/about' element={<About/>}/>
         <Route path='/' element={<Products/>}/>
         <Route path='/home' element={<Home/>}/>
+        <Route path='/cart' element={<Cart/>}/>
        </Routes>
       <Footer/>
     </Router>
