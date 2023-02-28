@@ -15,20 +15,24 @@ function Contact() {
                 'Content-Type': 'application/json'
               }
             });
+            alert('Thank you for Contact request , i will contact you soon')
+            setEmail('');
+            setName('')
+            setPhno('')
     }
   return (
     <div className="contact-container">
         <div className="name">
             <label htmlFor="">Name</label>
-            <input type="text" onChange={(e)=>setName(e.target.value)} />
+            <input type="text" value={name} onChange={(e)=>setName(e.target.value)} />
         </div>
         <div className="email">
             <label htmlFor="">Email id</label>
-            <input type="text"  onChange={(e)=>setEmail(e.target.value)}/>
+            <input type="text"  value={email} onChange={(e)=>setEmail(e.target.value)}/>
         </div>
         <div className="phoneno">
             <label htmlFor="">Phone No.</label>
-            <input type="number"  onChange={(e)=>setPhno(e.target.value)}/>
+            <input type="number" value={phNo} onChange={(e)=>setPhno(e.target.value)}/>
         </div>
         <button onClick={submitHandler}>Submit</button>
     </div>
