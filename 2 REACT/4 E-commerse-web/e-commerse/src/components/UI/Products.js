@@ -1,5 +1,5 @@
 import React from "react";
-import { CartContext, CartState } from "../../store/context";
+import { CartContext, CartState } from "../../store/cartcontext";
 import ProductsArr from "../assets/productList";
 import "./products.css";
 function Products() {

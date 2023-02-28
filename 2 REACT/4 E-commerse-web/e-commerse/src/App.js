@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import About from './components/About/About';
 import Home from './components/Home/Home';
 import Cart from './components/Cart/Cart';
+import Contact from './components/contactus/Contact';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
         <Route path='/' element={<Products/>}/>
         <Route path='/home' element={<Home/>}/>
         <Route path='/cart' element={<Cart/>}/>
+        <Route path='/contactus' element={<Contact/>} />
        </Routes>
       <Footer/>
     </Router>

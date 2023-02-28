@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { CartState } from '../../store/context';
+import { CartState } from '../../store/cartcontext';
 import './cart.css'
 function Cart() {
   let [totalAmt,setTotalAmt]=useState(0);

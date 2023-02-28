@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { CartState } from '../../store/context';
+import { CartState } from '../../store/cartcontext';
 import './header.css'
 
 function Header() {
@@ -12,6 +12,7 @@ function Header() {
         <NavLink to='/home' className='Link'><div>Home</div></NavLink>
         <NavLink to='/' className='Link'><div>Store</div></NavLink>
         <NavLink to='/about'  className='Link'><div>About</div></NavLink>
+        <NavLink to='/contactus'  className='Link'><div>Contact-Us</div></NavLink>
     </div>
     <div className="btn">
         <NavLink to='/cart'><button>Cart {cart.length}</button></NavLink>
