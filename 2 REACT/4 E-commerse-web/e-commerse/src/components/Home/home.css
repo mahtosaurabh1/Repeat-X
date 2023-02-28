@@ -1,0 +1,19 @@
+.head{
+    background-color: grey;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.list-item-container{
+    /* border: 2px solid red; */
+    height: 25rem;
+    width: 40rem;
+    margin-left: 25rem;
+    margin-top: 1rem;
+}
+.list-item{
+    display: flex;
+    justify-content: space-between;
+}

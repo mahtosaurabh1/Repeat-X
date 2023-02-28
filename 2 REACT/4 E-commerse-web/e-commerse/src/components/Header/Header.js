@@ -1,19 +1,20 @@
 import React, { useContext, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { CartState } from '../../store/context';
 import './header.css'
+
 function Header() {
     let {cart}=CartState();
 
   return (
    <div className="header-container">
     <div className="menu">
-        <Link to='/home' className='Link'><div>Home</div></Link>
-        <Link to='/' className='Link'><div>Store</div></Link>
-        <Link to='/about'  className='Link'><div>About</div></Link>
+        <NavLink to='/home' className='Link'><div>Home</div></NavLink>
+        <NavLink to='/' className='Link'><div>Store</div></NavLink>
+        <NavLink to='/about'  className='Link'><div>About</div></NavLink>
     </div>
     <div className="btn">
-        <Link to='/cart'><button>Cart {cart.length}</button></Link>
+        <NavLink to='/cart'><button>Cart {cart.length}</button></NavLink>
     </div>
 
    </div>
