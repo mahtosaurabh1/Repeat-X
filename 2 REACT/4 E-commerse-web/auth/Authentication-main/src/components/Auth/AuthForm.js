@@ -1,8 +1,11 @@
 import { useState, useRef } from 'react';
 
+
 import classes from './AuthForm.module.css';
+import { FKey } from './secret';
 
 const AuthForm = () => {
+  let key=FKey;
   const [isLoading,setIsLoading]=useState(false);
   const [isLogin, setIsLogin] = useState(true);
   const [email,setEmail]=useState();
@@ -17,9 +20,9 @@ const AuthForm = () => {
     setIsLoading(true)
     let url;
     if(isLogin){
-       url='https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAqAWuE9zphiTo8Om0JVvlH6NIDf9JWXwI'
+       url=`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${key}`
     }else{
-      url='https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAqAWuE9zphiTo8Om0JVvlH6NIDf9JWXwI'
+      url=`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${key}`
     }
     fetch(url,{
       method:'POST',
