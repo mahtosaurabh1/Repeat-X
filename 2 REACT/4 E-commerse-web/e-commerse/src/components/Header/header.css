@@ -6,11 +6,16 @@
     align-items: center;
     justify-content: space-between;
 }
+.shop{
+    display: flex;
+    gap: 0.8rem;
+}
 
 .menu{
     display: flex;
-    gap: 2.5rem;
+    justify-content: space-between;
     font-size: 1.2rem;
+   width: 100%;
 }
 
 
@@ -28,4 +33,11 @@
 .Link{
     color: white;
     text-decoration: none;
+    cursor: pointer;
+}
+.auth{
+    display: flex;
+    justify-content: space-around;
+    /* border: 2px solid red; */
+    width: 20%;
 }
