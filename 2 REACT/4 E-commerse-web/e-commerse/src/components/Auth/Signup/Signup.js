@@ -40,7 +40,7 @@ function Signup() {
          }).then((data)=>{
           // console.log(data);
           authCtx.login(data.idToken);
-          navigate('/home')
+          navigate('/')
           
          }).catch((err)=>{
           alert(err.message)
