@@ -23,6 +23,7 @@ export let AuthContextProvider=(props)=>{
     let logoutHandler=()=>{
         setToken(null)
         localStorage.removeItem('token')
+        localStorage.removeItem('user');
     }
 
     const contextValue={

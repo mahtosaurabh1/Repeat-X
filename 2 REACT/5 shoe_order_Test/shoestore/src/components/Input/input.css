@@ -1,0 +1,18 @@
+.form-container{
+    display: flex;
+    gap: 0.5rem;
+    border: 2px solid black;
+    padding: 1.2rem;
+    flex-wrap: wrap;
+}
+.smal-form-container{
+  display: flex;
+  flex-direction: column;
+}
+.product-container{
+    display: flex;
+    justify-content: space-between;
+    border: 2px solid red;
+    gap: 2rem;
+    margin: 5px;
+}
