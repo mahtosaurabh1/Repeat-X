@@ -27,7 +27,7 @@ function App() {
     try {
       let responce=await fetch('https://practice-9d840-default-rtdb.firebaseio.com/movies.json');
       let  data=await responce.json();
-      console.log(data);
+      console.log("fcdv",responce);
       let loadMovie=[];
       for(let key in data){
           loadMovie.push({

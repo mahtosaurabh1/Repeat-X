@@ -1,19 +1,34 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import AuthContext from "../../store/authcontext";
 import { CartState } from "../../store/cartcontext";
 import "./products.css";
 function Products() {
   let navigate=useNavigate();
   let {products,setCart,cart}=CartState();
   let productArr =products;
+  let authCtx=useContext(AuthContext);
+  let user=localStorage.getItem('user');
+  // console.log(user)
 
-  let handleAddtoCart=(val)=>{
+  let handleAddtoCart=async (val)=>{
     if(cart.includes(val)){
       alert('item already added');
       return;
-    }
-    setCart([...cart,val]);
-  }
+    }else{
+          setCart([...cart,val]);
+        // send data to firebase
+        const response = await fetch('https://e-commerce-25ae3-default-rtdb.firebaseio.com/cart-item.json', {
+            method: 'POST',
+            body: JSON.stringify({...val,user},),
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+          const data = await response.json();
+          // console.log(data);
+        }
+      }
 
   let previewPageHandler=(id)=>{
     let singlePrdct=products.filter((val)=>{
@@ -44,5 +59,4 @@ function Products() {
     </div>
   );
 }
-
-export default Products;
+export default Products

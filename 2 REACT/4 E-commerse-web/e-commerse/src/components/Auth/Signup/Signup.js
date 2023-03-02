@@ -26,6 +26,9 @@ function Signup() {
          }).then(res=>{
            setIsLoading(false)
            if(res.ok){
+            authCtx.setUser(email);
+            // console.log(authCtx.user);
+            localStorage.setItem('user',email)
               return res.json();
            }else{
            return res.json().then(data=>{
@@ -38,7 +41,7 @@ function Signup() {
             }) 
            }
          }).then((data)=>{
-          // console.log(data);
+         
           authCtx.login(data.idToken);
           navigate('/')
           

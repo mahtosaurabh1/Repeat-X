@@ -1,22 +1,62 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { CartState } from '../../store/cartcontext';
 import './cart.css'
 function Cart() {
   let [totalAmt,setTotalAmt]=useState(0);
-  let {cart,setCart}=CartState();
-  let products=cart;
-  useEffect(()=>{
-   setTotalAmt(cart.reduce((prev,cur)=>{
-    return prev + Number(cur.price);
-    },0))
-  },[cart]);
+  let [loadedCart,loadedSetCart]=useState([]);
+  let [filterCart,setfilterCart]=useState([]);
+  let loginUser=localStorage.getItem('user');
+  let {setCart}=CartState();
 
-let handleRemoveFromCart=(id)=>{
-  let nArrProducts=products.filter((val)=>{
-    return val.id !== id;
-  })
-  setCart(nArrProducts)
-}
+  const  fetchCartHandler = useCallback(async ()=>{
+    try {
+      let responce=await fetch('https://e-commerce-25ae3-default-rtdb.firebaseio.com/cart-item.json');
+      let  data=await responce.json();
+      // console.log(data);
+      let loadCartItem=[];
+      for(let key in data){
+        loadCartItem.push({
+            id:key,
+            title:data[key].title,
+            price:data[key].price,
+            imageUrl:data[key].imageUrl,
+            user:data[key].user
+          });
+      }
+      loadedSetCart(loadCartItem);
+
+      let filterArr=loadCartItem.filter((val)=>{
+        return val.user === loginUser ;
+      })
+      // console.log(filterArr);
+      setfilterCart(filterArr);
+      setCart(filterArr);
+      setTotalAmt(filterArr.reduce((prev,cur)=>{
+        return prev + Number(cur.price);
+        },0))
+    } catch (error) {
+      console.log(error);
+    }
+
+  },[])
+
+  useEffect(()=>{
+    fetchCartHandler();
+  },[filterCart]);
+
+let handleRemoveFromCart=async (id)=>{
+  // let nArrProducts=loadedCart.filter((val)=>{
+  //   return val.id !== id;
+  // })
+  // setCart(nArrProducts)
+
+  const response = await fetch(`https://e-commerce-25ae3-default-rtdb.firebaseio.com/cart-item/${id}.json`, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+   }
   return (
     <div className="cart-container">
       <table>
@@ -29,7 +69,7 @@ let handleRemoveFromCart=(id)=>{
           </tr>
         </thead>
          {
-          products.map((val,i)=>{
+          filterCart.map((val,i)=>{
             return(
              <tbody key={i}>
                <tr >
