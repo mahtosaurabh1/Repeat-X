@@ -68,7 +68,6 @@ function Input() {
             return
         }
 
-
         fetch(`https://shoe-store-2f70c-default-rtdb.firebaseio.com/allshoe/${val.id}.json`,{
             method:'PUT',
             body:JSON.stringify({
@@ -85,8 +84,31 @@ function Input() {
             }
            }).then(res=>{
             fetchDataFromServer();
-            let newObj={shoeName:val.shoeName,description:val.description,small:1,price:val.price}
-            productCtx.setCart([...productCtx.cart,newObj])
+            let newObj={shoeName:val.shoeName,description:val.description,small:1,price:val.price};
+            // send cart data to firebase
+
+
+            fetch('https://shoe-store-2f70c-default-rtdb.firebaseio.com/cart.json',{
+            method:'POST',
+            body:JSON.stringify({
+                shoeName:newObj.shoeName,
+                description:newObj.description,
+                small:newObj.small,
+                price:newObj.price,
+                returnSecureToken:true
+            }),
+            headers:{
+             'Content-Type':'application/json'
+            }
+           }).then(res=>{
+           console.log(res);
+           productCtx.setCart([...productCtx.cart,newObj]);
+            // fetchDataFromServer();
+            // console.log("new",productCtx.cart);
+           }).catch((err)=>{
+            alert(err.message)
+           })
+        
            }).catch((err)=>{
             alert(err.message)
            })
@@ -114,11 +136,33 @@ function Input() {
             headers:{
              'Content-Type':'application/json'
             }
+           }).then(res=>{ 
+            fetchDataFromServer();
+            let newObj={shoeName:val.shoeName,description:val.description,large:1,price:val.price};
+            // send cart data to firebase
+
+
+            fetch('https://shoe-store-2f70c-default-rtdb.firebaseio.com/cart.json',{
+            method:'POST',
+            body:JSON.stringify({
+                shoeName:newObj.shoeName,
+                description:newObj.description,
+                large:newObj.large,
+                price:newObj.price,
+                returnSecureToken:true
+            }),
+            headers:{
+             'Content-Type':'application/json'
+            }
            }).then(res=>{
            console.log(res);
-            fetchDataFromServer()
-            let newObj={shoeName:val.shoeName,description:val.description,large:1,price:val.price}
-            productCtx.setCart([...productCtx.cart,newObj])
+           productCtx.setCart([...productCtx.cart,newObj]);
+            // fetchDataFromServer();
+            // console.log("new",productCtx.cart);
+           }).catch((err)=>{
+            alert(err.message)
+           })
+        
            }).catch((err)=>{
             alert(err.message)
            })
@@ -150,10 +194,32 @@ function Input() {
              'Content-Type':'application/json'
             }
            }).then(res=>{
+            fetchDataFromServer();
+            let newObj={shoeName:val.shoeName,description:val.description,medium:1,price:val.price};
+            // send cart data to firebase
+
+
+            fetch('https://shoe-store-2f70c-default-rtdb.firebaseio.com/cart.json',{
+            method:'POST',
+            body:JSON.stringify({
+                shoeName:newObj.shoeName,
+                description:newObj.description,
+                medium:newObj.medium,
+                price:newObj.price,
+                returnSecureToken:true
+            }),
+            headers:{
+             'Content-Type':'application/json'
+            }
+           }).then(res=>{
            console.log(res);
-            fetchDataFromServer()
-            let newObj={shoeName:val.shoeName,description:val.description,medium:1,price:val.price}
-            productCtx.setCart([...productCtx.cart,newObj])
+           productCtx.setCart([...productCtx.cart,newObj]);
+            // fetchDataFromServer();
+            // console.log("new",productCtx.cart);
+           }).catch((err)=>{
+            alert(err.message)
+           })
+        
            }).catch((err)=>{
             alert(err.message)
            })
