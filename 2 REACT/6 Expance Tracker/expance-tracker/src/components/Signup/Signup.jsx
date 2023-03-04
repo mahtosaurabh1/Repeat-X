@@ -1,11 +1,12 @@
-import React, {  useState } from 'react'
+import React, {  useContext, useState } from 'react'
+import AuthContext from '../../store/auth-context';
 import './signup.css'
 function Signup() {
     const [isLoading,setIsLoading]=useState(false);
     const [email,setEmail]=useState();
     const [password,setPassword]=useState();
     const [confPassword,setconfPassword]=useState();
- 
+    let authCtx=useContext(AuthContext);
 
     const signupHandler=(e)=>{
         e.preventDefault();
@@ -37,7 +38,7 @@ function Signup() {
             }) 
            }
          }).then((data)=>{
-          
+          authCtx.login(data.idToken);
          }).catch((err)=>{
           alert(err.message)
          })

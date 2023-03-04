@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import AuthContext from '../../store/auth-context';
 import './login.css'
 function Login() {
+  let authCtx=useContext(AuthContext);
     const [loading,setIsLoading]=useState(false);
     const [email,setEmail]=useState();
     const [password,setPassword]=useState();
@@ -38,6 +40,7 @@ function Login() {
            }
          }).then((data)=>{
           // console.log(data);
+          authCtx.login(data.idToken);
           navigate('/')
           
          }).catch((err)=>{
