@@ -103,8 +103,6 @@ function Input() {
            }).then(res=>{
            console.log(res);
            productCtx.setCart([...productCtx.cart,newObj]);
-            // fetchDataFromServer();
-            // console.log("new",productCtx.cart);
            }).catch((err)=>{
             alert(err.message)
            })
