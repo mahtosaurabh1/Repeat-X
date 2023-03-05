@@ -5,13 +5,15 @@ let AuthContext=React.createContext({
     isLoggedIn:false,
     logout:()=>{},
     login:(token)=>{},
-    user:''
+    user:'',
+    verify:false
 })
 
 export let AuthContextProvider=(props)=>{
     let initialToken=localStorage.getItem('token')
     let [token,setToken]=useState(initialToken);
     const [user,setUser]=useState(null);
+    const [verify,setVerify]=useState(false);
 
     let  userIsLoggedIn= !!token;
 
@@ -32,7 +34,9 @@ export let AuthContextProvider=(props)=>{
         login:loginHandler,
         logout:logoutHandler,
         user:user,
-        setUser:setUser
+        setUser:setUser,
+        verify:verify,
+        setVerify:setVerify
     }
      return <AuthContext.Provider value={contextValue}>{props.children}</AuthContext.Provider>
 }

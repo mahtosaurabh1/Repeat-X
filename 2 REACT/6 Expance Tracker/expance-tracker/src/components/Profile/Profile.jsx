@@ -79,6 +79,27 @@ function Profile() {
            })
     alert('name saved to db')
     }
+
+
+    // handle verify
+    let verifyEmail=async ()=>{
+        fetch('https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyD_NFcrOTB_b8H_39a6sCEPzWU17CKQy_w',{
+            method:'POST',
+            body:JSON.stringify({
+                "requestType":"VERIFY_EMAIL",
+                "idToken":authCtx.token
+            }),
+            headers:{
+             'Content-Type':'application/json'
+            }
+           }).then(res=>{
+            authCtx.setVerify(true);
+            alert('verification link send to your email')
+           }).catch((err)=>{
+            alert(err.message);
+            return;
+           })
+    }
   return (
     <div className="profile-container">
         <h1>Profile</h1>
@@ -89,6 +110,7 @@ function Profile() {
         </div>
         {currUser && <button onClick={()=>updateuserProfile(currUser)}>Update</button>}
         {!currUser && <button onClick={handleProfileName}>Add Name</button>}
+        {!authCtx.verify  && <button onClick={verifyEmail}>Verify Email</button>}
     </div>
   )
 }
