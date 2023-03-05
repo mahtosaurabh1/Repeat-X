@@ -4,6 +4,7 @@ import Login from "./components/Login/Login.jsx";
 import Header from "./components/Home/Header";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Profile from "./components/Profile/Profile";
+import ForgetPassword from "./components/ForgetPassword/ForgetPassword";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/singup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path='/profile' element={<Profile/>}/>
+        <Route path='/forget-password' element={<ForgetPassword/>}/>
       </Routes>
     </Router>
   );

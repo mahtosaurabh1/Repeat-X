@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 import AuthContext from '../../store/auth-context';
 import './login.css'
 function Login() {
@@ -62,6 +62,9 @@ function Login() {
         <button>Forget Password</button>
         <div>
           <p>Dont have account create one <button>Singup</button></p>
+        </div>
+        <div className="forgetP">
+        <Link to='/forget-password'>Forget Password</Link>
         </div>
     </div>
   )
