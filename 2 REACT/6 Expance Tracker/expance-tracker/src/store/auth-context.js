@@ -6,7 +6,7 @@ let AuthContext=React.createContext({
     logout:()=>{},
     login:(token)=>{},
     user:'',
-    verify:false
+    verify:false,
 })
 
 export let AuthContextProvider=(props)=>{

@@ -1,4 +1,5 @@
 import React, {  useContext, useState } from 'react'
+import { Link } from 'react-router-dom';
 import AuthContext from '../../store/auth-context';
 import './signup.css'
 function Signup() {
@@ -68,7 +69,7 @@ function Signup() {
         {!isLoading && <button onClick={signupHandler}>Signup</button>}
 
         <div className="already-have-act">
-            <div>Alraedy have a account  Login</div>
+            <div>Alraedy have a account  <Link to='/login'>Login</Link></div>
         </div>
     </div>
   )

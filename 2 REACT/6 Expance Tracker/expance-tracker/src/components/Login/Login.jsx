@@ -61,7 +61,7 @@ function Login() {
         {loading ?<p>Loading...</p>:<button onClick={loginHandler}>Login</button>}
         <button>Forget Password</button>
         <div>
-          <p>Dont have account create one <button>Singup</button></p>
+          <p>Dont have account create one <Link to='/singup'><button>Singup</button></Link></p>
         </div>
         <div className="forgetP">
         <Link to='/forget-password'>Forget Password</Link>

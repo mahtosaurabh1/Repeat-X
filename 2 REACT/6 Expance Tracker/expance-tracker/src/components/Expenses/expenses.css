@@ -1,0 +1,10 @@
+.all-expenses-items{
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+.single-item{
+    border: 2px solid red;
+    width: 5rem;
+
+}
