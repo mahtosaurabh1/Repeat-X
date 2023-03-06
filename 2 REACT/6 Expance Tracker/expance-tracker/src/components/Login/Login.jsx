@@ -59,7 +59,6 @@ function Login() {
             <input type="text" value={password} onChange={e=>setPassword(e.target.value)} />
         </div>
         {loading ?<p>Loading...</p>:<button onClick={loginHandler}>Login</button>}
-        <button>Forget Password</button>
         <div>
           <p>Dont have account create one <Link to='/singup'><button>Singup</button></Link></p>
         </div>
