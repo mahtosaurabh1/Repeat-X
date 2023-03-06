@@ -10,8 +10,8 @@ import Expenses from "./components/Expenses/Expenses";
 function App() {
   return (
     <Router>
+       <Header />
       <Routes>
-        <Route path="/" element={<Header />} />
         <Route path="/singup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path='/profile' element={<Profile/>}/>

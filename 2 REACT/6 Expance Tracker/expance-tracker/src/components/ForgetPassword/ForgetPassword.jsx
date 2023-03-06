@@ -20,12 +20,10 @@ function ForgetPassword() {
            })
     }
   return (
-    <div className="forget-password-container">
-        <div className="input-container">
-            <div>Enter the email which you registred</div>
+    <div className="forget">
+         <h4>Enter the email which you registred</h4>
             <input type="text" value={email} onChange={(e)=>setEmail(e.target.value)} />
             <button onClick={handleForgetPassword}>Send Link</button>
-        </div>
     </div>
   )
 }

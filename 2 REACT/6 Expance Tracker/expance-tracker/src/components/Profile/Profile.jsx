@@ -101,12 +101,12 @@ function Profile() {
            })
     }
   return (
-    <div className="profile-container">
+    <div className="profile">
         <h1>Profile</h1>
         <div className="name">
             <label htmlFor="">Name</label>
             <input type="text" value={name} onChange={(e)=>setName(e.target.value)}/>
-            {authCtx.user && <label>Full Name {authCtx.user.name} </label>}
+            {authCtx.user && <label>Full Name - {authCtx.user.name} </label>}
         </div>
         {currUser && <button onClick={()=>updateuserProfile(currUser)}>Update</button>}
         {!currUser && <button onClick={handleProfileName}>Add Name</button>}

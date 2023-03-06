@@ -7,6 +7,7 @@ function Expenses() {
     const [category,setCategory]=useState('food');
     const [flag,setFlag]=useState(true);
     const [id,setId]=useState('');
+    const [totalPrice,setTotalPrice]=useState(0)
 
 
 
@@ -14,6 +15,7 @@ function Expenses() {
         let res= await fetch('https://expense-tracker-217da-default-rtdb.firebaseio.com/expense-item.json');
          let data= await res.json();
          let loadItem=[];
+         let total=0;
          for(let key in data){
            loadItem.push({
                id:key,
@@ -21,7 +23,9 @@ function Expenses() {
                description:data[key].description,
                category:data[key].category
              });
+             total += Number(data[key].money);
          }
+         setTotalPrice(total);
          setItems(loadItem);
  
    }
@@ -96,8 +100,8 @@ function Expenses() {
    
 
   return (
-    <div className="expenses-main-container">
-        <div className="form-container">
+    <div className="expenses-container">
+        <div className="expenses">
             <div className="money">
                 <label htmlFor="">Money</label>
                 <input type="text" value={money} onChange={(e)=>setMoney(e.target.value)} />
@@ -107,17 +111,20 @@ function Expenses() {
                 <input type="text" value={description} onChange={(e)=>setDescription(e.target.value)}/>
             </div>
             <div className="category">
+                <label htmlFor="">Category</label>
                 <select value={category} onChange={(e)=>{setCategory(e.target.value)}}>
                     <option value='movie'>Movie</option>
                     <option value='food'>Food</option>
                     <option value='travel'>Travel</option>
                 </select>
             </div>
-        </div>
-        <div className="btn">
+            <div>Total Price {totalPrice}</div>
+            <div className="btn">
         {flag && <button onClick={handleAddExpenses}>Add Expenses</button>}
         {!flag && <button onClick={handleUpdate}>Update Expenses</button>}
         </div>
+        </div>
+       
 
         {/* render all expenses */}
 
@@ -127,16 +134,18 @@ function Expenses() {
                     return(
                         <div className="single-item">
                            <div className="single-item-money">
-                            <p>{val.money}</p>
+                            <p><label htmlFor="">Price</label> - {val.money}</p>
                            </div>
                            <div className="single-item-description">
-                            <p>{val.description}</p>
+                            <p><label htmlFor="">Desc</label> - {val.description}</p>
                            </div>
                            <div className="single-item-category">
-                            <p>{val.category}</p>
+                            <p><label htmlFor="">Category</label> - {val.category}</p>
                            </div>
-                           <button onClick={()=>handleDelete(val.id)}>Delete</button>
-                           <button className="update" onClick={()=>handleEdit(i,val.id)} >Edit</button>
+                           <div className="actions">
+                           <button className='btn' onClick={()=>handleDelete(val.id)}>Delete</button>
+                           <button className="btn" onClick={()=>handleEdit(i,val.id)} >Edit</button>
+                           </div>
                         </div>
                     )
                 })

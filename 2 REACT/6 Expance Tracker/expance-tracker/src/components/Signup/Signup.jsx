@@ -1,5 +1,5 @@
 import React, {  useContext, useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from '../../store/auth-context';
 import './signup.css'
 function Signup() {
@@ -8,6 +8,7 @@ function Signup() {
     const [password,setPassword]=useState();
     const [confPassword,setconfPassword]=useState();
     let authCtx=useContext(AuthContext);
+    let navigate=useNavigate();
 
     const signupHandler=(e)=>{
         e.preventDefault();
@@ -26,7 +27,8 @@ function Signup() {
          }).then(res=>{
            setIsLoading(false)
            if(res.ok){
-            localStorage.setItem('user',email)
+            localStorage.setItem('user',email);
+
               return res.json();
            }else{
            return res.json().then(data=>{
@@ -40,6 +42,7 @@ function Signup() {
            }
          }).then((data)=>{
           authCtx.login(data.idToken);
+          navigate('/expenses')
          }).catch((err)=>{
           alert(err.message)
          })
@@ -51,8 +54,8 @@ function Signup() {
        }
 
   return (
-    <div className="signup-container">
-        <h1>Sign-Up</h1>
+    <div className="singup">
+        <h1>Create-One</h1>
         <div className="email">
             <label htmlFor="">Email</label>
             <input type="text" value={email} onChange={(e)=>setEmail(e.target.value)}/>
@@ -66,11 +69,9 @@ function Signup() {
             <input type="text" value={confPassword} onChange={e=>setconfPassword(e.target.value)} />
         </div>
         {isLoading && <p>loading...</p>}
-        {!isLoading && <button onClick={signupHandler}>Signup</button>}
+        {!isLoading && <button onClick={signupHandler}>Sing-Up</button>}
 
-        <div className="already-have-act">
-            <div>Alraedy have a account  <Link to='/login'>Login</Link></div>
-        </div>
+        <button><Link className="Link" to='/login'>Login</Link></button>
     </div>
   )
 }
