@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './expenses.css'
 function Expenses() {
     const [items,setItems]=useState([]);
@@ -6,9 +6,49 @@ function Expenses() {
     const [description,setDescription]=useState('')
     const [category,setCategory]=useState('food');
 
+
+
+    let fetchDataFromServer= async ()=>{
+        let res= await fetch('https://expense-tracker-217da-default-rtdb.firebaseio.com/expense-item.json');
+         let data= await res.json();
+         let loadItem=[];
+         for(let key in data){
+           loadItem.push({
+               id:key,
+               money:data[key].money,
+               description:data[key].description,
+               category:data[key].category
+             });
+         }
+         setItems(loadItem);
+ 
+   }
+
+   useEffect(()=>{
+    fetchDataFromServer();
+   },[])
+
     let handleAddExpenses=()=>{
        let obj={money,description,category}
        setItems([...items,obj]);
+
+        fetch('https://expense-tracker-217da-default-rtdb.firebaseio.com/expense-item.json',{
+            method:'POST',
+            body:JSON.stringify({
+               money:money,
+               description:description,
+               category:category,
+               returnSecureToken:true
+            }),
+            headers:{
+             'Content-Type':'application/json'
+            }
+           }).then(res=>{
+           }).catch((err)=>{
+            alert(err.message);
+            return;
+           })
+    
     }
 
   return (
