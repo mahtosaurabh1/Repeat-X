@@ -4,6 +4,7 @@ import EmailCompose from './components/EmailCompose/EmailCompose';
 import { Header } from './components/Header/Header';
 import Inbox from './components/Inbox/Inbox';
 import Login from './components/Login/Login';
+import Sent from './components/Sent/Sent';
 import Signup from './components/Signup/Signup';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
       <Route path='/singup' element={ <Signup/>}/>
       <Route path='/login' element={<Login/>}/>
       <Route path='/inbox' element={<Inbox/>}/>
+      <Route path='/sent' element={<Sent/>}/>
     </Routes>
   </Router>
   );
