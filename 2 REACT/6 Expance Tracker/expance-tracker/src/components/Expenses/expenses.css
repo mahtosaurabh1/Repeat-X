@@ -16,8 +16,6 @@
     margin-top: 8rem;
   }
   
- 
-  
   label {
     font-weight: bold;
     color: #464646;
@@ -61,6 +59,11 @@
         align-items: center;
         border-radius: 25px;
         font-weight: bold;
+        gap: 2rem;
+}
+.theme{
+  background-color: black;
+  color: white;
 }
 
 

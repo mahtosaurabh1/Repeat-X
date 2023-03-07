@@ -7,7 +7,8 @@ function Expenses() {
     const [category,setCategory]=useState('food');
     const [flag,setFlag]=useState(true);
     const [id,setId]=useState('');
-    const [totalPrice,setTotalPrice]=useState(0)
+    const [totalPrice,setTotalPrice]=useState(0);
+    const [tChange,setTChange]=useState(true)
 
 
 
@@ -97,6 +98,18 @@ function Expenses() {
         setFlag(!flag);
     }
 
+    const handleThemeChange=()=>{
+      if(tChange){
+        let a=document.querySelector('.expenses');
+        a.classList.add('theme');
+        setTChange(false)
+      }else{
+        let a=document.querySelector('.expenses');
+        a.classList.remove('theme');
+        setTChange(true)
+      }
+
+    }
    
 
   return (
@@ -122,6 +135,7 @@ function Expenses() {
             <div className="btn">
         {flag && <button onClick={handleAddExpenses}>Add Expenses</button>}
         {!flag && <button onClick={handleUpdate}>Update Expenses</button>}
+          {totalPrice >=10000 && <button onClick={handleThemeChange}>Theme Change</button>}
         </div>
         </div>
        
