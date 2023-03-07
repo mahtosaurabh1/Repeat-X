@@ -17,18 +17,36 @@ function Inbox() {
         reciver: data[key].reciver,
         body: data[key].body,
         subject: data[key].subject,
+        seen:data[key].seen
       });
     }
     setAllmail(loadItem);
   };
+
+  let handleMarkasRead=async (id,i)=>{
+    let newObj={
+      sender:allmail[i].sender,
+      reciver:allmail[i].reciver,
+      body:allmail[i].body,
+      subject:allmail[i].subject,
+      seen:true
+    }
+    let responce = await axios.put(
+      `https://mail-box-d1398-default-rtdb.firebaseio.com/all-mail/${id}.json`,newObj
+    );
+
+    fetchDataFromServer();
+
+  }
+
   useEffect(() => {
     fetchDataFromServer();
   }, []);
 
   return (
-    <>
+    <div className="inbox-container">
       <h1>Inbox</h1>
-      {allmail.map((val) => {
+      {allmail.map((val,i) => {
         return (
           <div className="one-inbox-container">
             <div className="sub-body">
@@ -37,12 +55,13 @@ function Inbox() {
             </div>
             <div className="sender">
               <h3>sender- <span>{val.sender}</span></h3>
-              <button>Delete</button>
+              <button >Delete</button>
+              {!val.seen &&  <button onClick={()=>handleMarkasRead(val.id,i)} >Mark Read</button>}
             </div>
           </div>
         );
       })}
-    </>
+    </div>
   );
 }
 

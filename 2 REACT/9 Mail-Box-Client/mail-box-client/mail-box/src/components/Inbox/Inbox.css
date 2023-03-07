@@ -53,8 +53,13 @@
   font-weight: bold;
 }
   
-.one-inbox-container{
+.inbox-container{
   margin-top: 5rem;
+}
+.one-inbox-container{
   display: flex;
   justify-content: space-between;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  gap: 5px;
 }

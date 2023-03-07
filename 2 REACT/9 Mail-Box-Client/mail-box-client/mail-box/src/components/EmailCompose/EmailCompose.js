@@ -14,6 +14,7 @@ function EmailCompose() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     let obj={
+      seen:false,
       sender:user,
       reciver:recipient,
       subject,
