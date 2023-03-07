@@ -82,7 +82,6 @@ function Login() {
       )}
 
       <button><Link className="Link" to="/singup">SingUp</Link></button>
-      <button><Link className="Link" to="/forget-password">Forget Password</Link></button>
       </div>
     </div>
   );
