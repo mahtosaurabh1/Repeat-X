@@ -1,3 +1,5 @@
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 import React, { useEffect, useState } from 'react'
 import './expenses.css'
 function Expenses() {
@@ -110,10 +112,32 @@ function Expenses() {
       }
 
     }
+
+    const download = ()=>{
+        // html2canvas(document.body).then(function(canvas) {
+        //     document.body.appendChild(canvas);
+        // });
+        const input = document.getElementById("all-expenses-items");
+        html2canvas(input)
+        .then((canvas)=>{
+            // to url -> image -> 64 bit ke string
+            const imgData = canvas.toDataURL('image/png');
+            const pdf = new jsPDF("p","mm","a4");
+            //empty page width
+            var width = pdf.internal.pageSize.getWidth();
+            //empty page height
+            var height = pdf.internal.pageSize.getHeight();
+            // image -> add -> pdf
+            pdf.addImage(imgData,"JPEG",0,0,width,height);
+            pdf.save("expenses.pdf");
+        }).catch((function(error){
+            console.log(error);
+        }))
+    }
    
 
   return (
-    <div className="expenses-container">
+    <div id="expenses-container">
         <div className="expenses">
             <div className="money">
                 <label htmlFor="">Money</label>
@@ -132,17 +156,18 @@ function Expenses() {
                 </select>
             </div>
             <div>Total Price {totalPrice}</div>
-            <div className="btn">
+            <div className="action-btn">
         {flag && <button onClick={handleAddExpenses}>Add Expenses</button>}
         {!flag && <button onClick={handleUpdate}>Update Expenses</button>}
           {totalPrice >=10000 && <button onClick={handleThemeChange}>Theme Change</button>}
+          <button onClick={download}>Download</button>
         </div>
         </div>
        
 
         {/* render all expenses */}
 
-        <div className="all-expenses-items">
+        <div id="all-expenses-items">
             {
                 items.map((val,i)=>{
                     return(
@@ -164,6 +189,7 @@ function Expenses() {
                     )
                 })
             }
+            <h3>{totalPrice}</h3>
         </div>
 
     </div>

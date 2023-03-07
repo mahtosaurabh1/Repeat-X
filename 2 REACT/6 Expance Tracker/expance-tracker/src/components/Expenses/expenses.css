@@ -48,18 +48,25 @@
     width: 90%;
     margin-left: 5%;
   }
-.btn{
-        cursor: pointer;
-        font: inherit;
-        border: none;
-        background-color: #4d1601;
-        color: white;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        border-radius: 25px;
-        font-weight: bold;
-        gap: 2rem;
+.action-btn{
+  display: flex;
+  gap: 5px;
+       
+}
+.action-btn button{
+  cursor: pointer;
+  font: inherit;
+  border: none;
+  background-color: #4d1601;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 25px;
+  font-weight: bold;
+  height: 3rem;
+  width: 12rem;
+
 }
 .theme{
   background-color: black;
