@@ -1,26 +1,27 @@
 import React, { useState } from 'react';
-import classes from './EmailCompose.module.css';
-import { Editor } from "react-draft-wysiwyg";
+import axios from 'axios'
+import classes from './EmailCompose.module.css'
 import "./../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
 function EmailCompose() {
 
   const [recipient, setRecipient] = useState('');
   const [subject, setSubject] = useState('');
-  const [editorState, setEditorState] = useState('');
-
+  const [body,setBody] = useState('');
+  let user=localStorage.getItem('user');
   
-  const editorHandler=(editorState)=>{
-   
- }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
- 
-    
-    setRecipient("")
-    setSubject("")
-    setEditorState("")
+    let obj={
+      sender:user,
+      reciver:recipient,
+      subject,
+      body
+    }
+
+    let responce= await axios.post('https://mail-box-d1398-default-rtdb.firebaseio.com/all-mail.json',obj);
+    alert('mail sent');
 
   }; 
 
@@ -39,10 +40,7 @@ function EmailCompose() {
         <div >
           <label htmlFor="body">Body:</label>
           <div className={classes.container}>
-        <Editor
-          editorState={editorState}
-          onEditorStateChange={editorHandler}
-        />
+         <textarea name="" id="" cols="100" rows="10" onChange={(e)=>setBody(e.target.value)}></textarea>
         </div>
         </div>
         <button type="submit">Send</button>
