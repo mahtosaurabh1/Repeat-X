@@ -39,6 +39,13 @@ function Inbox() {
 
   }
 
+  let handleDelete=async (id)=>{
+    let responce = await axios.delete(
+      `https://mail-box-d1398-default-rtdb.firebaseio.com/all-mail/${id}.json`
+    );
+      fetchDataFromServer();
+  }
+
   useEffect(() => {
     fetchDataFromServer();
   }, []);
@@ -55,7 +62,7 @@ function Inbox() {
             </div>
             <div className="sender">
               <h3>sender- <span>{val.sender}</span></h3>
-              <button >Delete</button>
+              <button onClick={()=>handleDelete(val.id)}>Delete</button>
               {!val.seen &&  <button onClick={()=>handleMarkasRead(val.id,i)} >Mark Read</button>}
             </div>
           </div>
