@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import "./Inbox.css";
 function Inbox() {
   let [allmail, setAllmail] = useState([]);
+  let user=localStorage.getItem('user')
 
   let fetchDataFromServer = async () => {
     let responce = await axios.get(
@@ -11,6 +12,7 @@ function Inbox() {
     let data = responce.data;
     let loadItem = [];
     for (let key in data) {
+     if(data[key].sender == user || data[key].reciver == user){
       loadItem.push({
         id: key,
         sender: data[key].sender,
@@ -19,6 +21,7 @@ function Inbox() {
         subject: data[key].subject,
         seen:data[key].seen
       });
+     }
     }
     setAllmail(loadItem);
   };
@@ -62,8 +65,10 @@ function Inbox() {
             </div>
             <div className="sender">
               <h3>sender- <span>{val.sender}</span></h3>
+              <div className="action-btn">
               <button onClick={()=>handleDelete(val.id)}>Delete</button>
               {!val.seen &&  <button onClick={()=>handleMarkasRead(val.id,i)} >Mark Read</button>}
+              </div>
             </div>
           </div>
         );

@@ -2,6 +2,21 @@
   text-align: center;
 }
 
+button {
+  cursor: pointer;
+  font: inherit;
+  border: none;
+  background-color: black;
+  width: 6rem;
+  height: 2.5rem;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 25px;
+  font-weight: bold;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
