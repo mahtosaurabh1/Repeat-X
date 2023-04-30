@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../../store/auth-context";
 import "./login.css";
+import axios from "axios";
 function Login() {
   let authCtx = useContext(AuthContext);
   const [loading, setIsLoading] = useState(false);
@@ -10,10 +11,24 @@ function Login() {
 
   let navigate = useNavigate();
 
-  const loginHandler = (e) => {
+  const loginHandler = async(e) => {
     e.preventDefault();
     setIsLoading(true);
-
+    let result=await fetch('http://localhost:5000/login',{
+            method:'post',
+            body:JSON.stringify({email,password}),
+            headers:{
+                'Content-type':'application/json'
+              },
+        })
+        result=await result.json();
+        if(result.name){
+            localStorage.setItem('user',email);
+            navigate('/')
+        }else{
+            alert('email does not exist')
+        }
+        console.log(result);
    
   };
 
