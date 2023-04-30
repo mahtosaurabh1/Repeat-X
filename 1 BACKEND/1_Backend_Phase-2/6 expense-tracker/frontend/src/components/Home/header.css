@@ -1,0 +1,40 @@
+.header {
+    width: 100%;
+    min-height: 5rem;
+    background-color: #8a2b06;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+  }
+  .header-btn{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 25rem;
+    flex-wrap: wrap;
+  }
+  
+
+  button {
+    cursor: pointer;
+    font: inherit;
+    border: none;
+    background-color: #4d1601;
+    color: white;
+    padding: 0.75rem 2rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius:25px;
+    font-weight: bold;
+    height: 3rem;
+    width: 8rem;
+  }
+  
+  .Link{
+    text-decoration: none;
+  }
+
+    

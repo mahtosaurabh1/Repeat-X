@@ -3,22 +3,19 @@ import React, { useEffect, useState } from "react";
 import "./products.css";
 function Products() {
   const [items, setItems] = useState([]);
-  const [money, setMoney] = useState(0);
+  const [money, setMoney] = useState();
   const [productName, setproductName] = useState("");
   const [category, setCategory] = useState("food");
-  const [flag, setFlag] = useState(true);
+  // const [flag, setFlag] = useState(true);
   const [totalPrice, setTotalPrice] = useState(0);
 
   let fetchDataFromServer = async () => {
     let result = await axios.get("http://localhost:5000/api/get");
-    // console.log(result.data);
     let t = 0;
     result.data.map((val) => {
-      // console.log(val);
       t += val.money;
     });
     setTotalPrice(t);
-    // console.log(money);
 
     setItems(result.data);
   };
@@ -32,6 +29,9 @@ function Products() {
 
     let result = await axios.post("http://localhost:5000/api/post", obj);
     fetchDataFromServer();
+    setCategory('')
+    setMoney('')
+    setproductName('')
   };
 
   let handleDelete = async (id) => {
@@ -46,14 +46,16 @@ function Products() {
         <div className="money">
           <div>Money</div>
           <input
+          placeholder="enter Amount"
             type="text"
             value={money}
             onChange={(e) => setMoney(e.target.value)}
           />
         </div>
         <div className="description">
-          <div>productName</div>
+          <div>Product Name</div>
           <input
+          placeholder="enter description"
             type="text"
             value={productName}
             onChange={(e) => setproductName(e.target.value)}
