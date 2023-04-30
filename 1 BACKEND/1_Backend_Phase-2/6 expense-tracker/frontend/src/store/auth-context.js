@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
 
 let AuthContext=React.createContext({
-    token:'',
     isLoggedIn:false,
     logout:()=>{},
     login:(token)=>{},
     user:'',
-    verify:false,
 })
 
 export let AuthContextProvider=(props)=>{

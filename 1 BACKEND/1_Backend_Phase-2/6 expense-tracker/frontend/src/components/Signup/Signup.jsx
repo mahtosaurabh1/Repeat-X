@@ -1,20 +1,31 @@
 import React, {  useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from '../../store/auth-context';
+import axios from 'axios'
 import './signup.css'
 function Signup() {
     const [isLoading,setIsLoading]=useState(false);
     const [email,setEmail]=useState();
     const [password,setPassword]=useState();
-    const [confPassword,setconfPassword]=useState();
+    const [name,setName]=useState();
     let authCtx=useContext(AuthContext);
     let navigate=useNavigate();
 
-    const signupHandler=(e)=>{
+    const signupHandler=async (e)=>{
         e.preventDefault();
-        setIsLoading(true)
-       
+        setIsLoading(true);
+
+        if(password && email){
+          let obj={name,email,password};
+          let result=await axios.post('http://localhost:5000/register',obj);
+          if(result.statusText === 'OK'){
+            setIsLoading(false);
+            localStorage.setItem('user',email);
+            authCtx.login(email);
+            navigate('/expenses');
+          }
        }
+      }
 
   return (
     <div className="parent-sing-up-container">
@@ -29,8 +40,8 @@ function Signup() {
             <input type="text" value={password} onChange={e=>setPassword(e.target.value)} />
         </div>
         <div className="confirm-password">
-            <div>Confirm-Password</div>
-            <input type="text" value={confPassword} onChange={e=>setconfPassword(e.target.value)} />
+            <div>Name</div>
+            <input type="text" value={name} onChange={e=>setName(e.target.value)} />
         </div>
         {isLoading && <p>loading...</p>}
         {!isLoading && <button onClick={signupHandler}>Sing-Up</button>}
