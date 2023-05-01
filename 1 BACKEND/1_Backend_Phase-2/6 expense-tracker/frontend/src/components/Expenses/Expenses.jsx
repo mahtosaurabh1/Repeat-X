@@ -17,12 +17,16 @@ function Expenses() {
 
 
     let fetchDataFromServer= async ()=>{
-        let result=await axios.get('http://localhost:5000/expenses');
-        setItems(result.data);    
+        let result=await axios.get('http://localhost:5000/expenses'); 
+        let loadItem=[];   
         let totalP=0;
         for(let i=0;i<result.data.length;i++){
+            if(result.data[i].user === user){
+                loadItem.push(result.data[i]);
             totalP += result.data[i].money;
+            }
         }
+        setItems(loadItem);
         setTotalPrice(totalP)
  
    }
@@ -32,7 +36,7 @@ function Expenses() {
    },[])
 
     let handleAddExpenses=async ()=>{
-        let obj={money,description,category}
+        let obj={money,description,category,user}
         let result=await axios.post('http://localhost:5000/expenses',obj);
         fetchDataFromServer();
     }
