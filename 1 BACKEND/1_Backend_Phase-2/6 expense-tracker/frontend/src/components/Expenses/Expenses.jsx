@@ -2,9 +2,10 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import React, { useEffect, useState } from 'react'
 import './expenses.css'
+import axios from 'axios';
 function Expenses() {
     const [items,setItems]=useState([]);
-    const [money,setMoney]=useState(0);
+    const [money,setMoney]=useState();
     const [description,setDescription]=useState('')
     const [category,setCategory]=useState('food');
     const [flag,setFlag]=useState(true);
@@ -12,11 +13,17 @@ function Expenses() {
     const [totalPrice,setTotalPrice]=useState(0);
     const [tChange,setTChange]=useState(true);
 
-    let user=localStorage.getItem('user');
+    let user=localStorage.getItem('user'); 
 
 
     let fetchDataFromServer= async ()=>{
-        
+        let result=await axios.get('http://localhost:5000/expenses');
+        setItems(result.data);    
+        let totalP=0;
+        for(let i=0;i<result.data.length;i++){
+            totalP += result.data[i].money;
+        }
+        setTotalPrice(totalP)
  
    }
 
@@ -24,21 +31,33 @@ function Expenses() {
     fetchDataFromServer();
    },[])
 
-    let handleAddExpenses=()=>{
-       
-    
+    let handleAddExpenses=async ()=>{
+        let obj={money,description,category}
+        let result=await axios.post('http://localhost:5000/expenses',obj);
+        fetchDataFromServer();
     }
 
     let handleDelete=async (id)=>{
-        
+      let result=await axios.delete(`http://localhost:5000/expenses/${id}`)
+      fetchDataFromServer();
     }
 
     let handleEdit=(idx,itemId)=>{
+        setMoney(items[idx].money)
+        setDescription(items[idx].description)
+        setCategory(items[idx].category);
+        setId(itemId);
+        if(flag){
+            setFlag(!flag);
+        }
         
     }
 
-    let handleUpdate=()=>{
-        
+    let handleUpdate=async ()=>{
+        let obj={money,description,category}
+        let result=await axios.put(`http://localhost:5000/expenses/${id}`,obj);
+        setFlag(!flag);
+        fetchDataFromServer();
       
     }
 
@@ -124,8 +143,8 @@ function Expenses() {
                             <p><label htmlFor="">Category</label> - {val.category}</p>
                            </div>
                            <div className="actions">
-                           <button className="btn" onClick={()=>handleDelete(val.id)}>Delete</button>
-                           <button className="btn" onClick={()=>handleEdit(i,val.id)} >Edit</button>
+                           <button className="btn" onClick={()=>handleDelete(val._id)}>Delete</button>
+                           <button className="btn" onClick={()=>handleEdit(i,val._id)} >Edit</button>
                            </div>
                         </div>
                     )

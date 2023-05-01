@@ -2,6 +2,7 @@ const express=require('express')
 const cors=require('cors');
 const bodyParser = require('body-parser');
 const User = require('./Model/User');
+const Expenses = require('./Model/Expenses');
 require('./db/config')
 
 
@@ -31,6 +32,30 @@ app.post('/login',async(req,res)=>{
        }else{
         res.send({result:'user not found'})
     }
+})
+
+
+// ____________________________________
+app.post('/expenses',async (req,res)=>{
+    let expense=await Expenses(req.body);
+    let  result=await expense.save();
+    res.send(result)
+
+})
+
+app.get('/expenses',async (req,res)=>{
+    let result=await Expenses.find();
+    res.send(result)
+})
+
+app.delete('/expenses/:id',async (req,res)=>{
+    let result=await Expenses.deleteOne({_id:req.params.id})
+    res.send(result)
+})
+
+app.put('/expenses/:id',async (req,res)=>{
+    let result=await Expenses.updateOne({_id:req.params.id},{$set:req.body})
+    res.send(result)
 })
 
 
