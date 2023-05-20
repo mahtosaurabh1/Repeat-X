@@ -27,8 +27,7 @@ function Expenses() {
             }
         }
         setItems(loadItem);
-        setTotalPrice(totalP)
- 
+        setTotalPrice(totalP);
    }
 
    useEffect(()=>{
@@ -154,7 +153,7 @@ function Expenses() {
                     )
                 })
             }
-            <h3>{totalPrice}</h3>
+            {/* <h3>{totalPrice}</h3> */}
         </div>
 
     </div>
