@@ -60,7 +60,6 @@ function Login() {
         <button onClick={loginHandler}>Login</button>
       )}
 
-      <button><Link className="Link" to="/forget-password">Forget Password</Link></button>
       </div>
     </div>
     </div>
